@@ -26,7 +26,7 @@ const Header = styled.div`
 `
 
 const BodyContainer = styled.div`
-  background-color: ${props => props.theme.color};
+ 
   padding: 0px;
   min-height: 100vh;
   padding: 10px;
@@ -103,12 +103,23 @@ const BtnClipColor = styled.button`
   opacity: 0.7;
 `
 
+function updateHASHLink (txt) {
+  // document?.location?.hash = txt
+  try {
+    if (document.location.hash !== txt) {
+      document.location.hash = txt
+    }
+  } catch (ex) {}
+
+  return txt
+}
+
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
       theme: {
-        color: Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex(),
+        color: Color(document.location.hash).hex() || Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex(),
         colorTextLight: '#FFF',
         colorTextDark: '#000'
       }
@@ -116,16 +127,26 @@ class App extends React.Component {
     this.inputColor = null
   }
 
-  RandomColor = () => {
+  updateColor = (color) => {
+    updateHASHLink(color)
+
     this.setState((state) => ({
       theme: {
         ...state.theme,
-        color: Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex()
+        color
       }
     }))
   }
 
+  RandomColor = () => {
+    this.updateColor(Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex())
+  }
+
   componentWillMount () {
+    window.onhashchange = () => {
+       // do something awesome here
+       this.updateColor(Color(document.location.hash).hex())
+    }
     document.addEventListener('keydown', (event) => {
       if (event.keyCode === 32) {
         this.RandomColor()
@@ -136,12 +157,7 @@ class App extends React.Component {
   handleChangeColor = (event) => {
     const newColor = event.target.value
 
-    this.setState((state) => ({
-      theme: {
-        ...state.theme,
-        color: newColor
-      }
-    }))
+    this.updateColor(newColor)
   }
 
   EditColor = () => {
@@ -153,16 +169,18 @@ class App extends React.Component {
     return (
       <div>
         <ThemeProvider theme={this.state.theme}>
-          <BodyContainer>
+          <BodyContainer style={{
+             backgroundColor: this.state.theme.color
+          }}>
 
             <Header>
-              <Brand onClick={this.RandomColor}>Colorized</Brand>
+              <Brand>Colorized</Brand>
               <InputSelectColors>
                 <input ref={r=>this.refcolor=r} id="select-color" type='color' value={this.state.theme.color} onChange={this.handleChangeColor} />
               </InputSelectColors>
             </Header>
 
-            <ContainerTextColor onClick={this.RandomColor}>
+            <ContainerTextColor>
               <TextColor>{this.state.theme.color}</TextColor>
             </ContainerTextColor>
 

@@ -37,6 +37,7 @@ gulp.task('watch-scripts', () =>
 )
 
 gulp.task('build-script', () => (
+    process.env.NODE_ENV = 'production',
     gulp
         .src(['src/index.js'])
         .pipe(
