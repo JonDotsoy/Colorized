@@ -156,16 +156,14 @@ class App extends React.Component {
           <BodyContainer>
 
             <Header>
-              <Brand>Colorized</Brand>
+              <Brand onClick={this.RandomColor}>Colorized</Brand>
               <InputSelectColors>
                 <input ref={r=>this.refcolor=r} id="select-color" type='color' value={this.state.theme.color} onChange={this.handleChangeColor} />
               </InputSelectColors>
             </Header>
 
-            <ContainerTextColor>
-              <BtnClipColor onClick={this.RandomColor}><MdAutorenew></MdAutorenew></BtnClipColor>
+            <ContainerTextColor onClick={this.RandomColor}>
               <TextColor>{this.state.theme.color}</TextColor>
-              <BtnClipColor onClick={this.EditColor}><MdCreate></MdCreate></BtnClipColor>
             </ContainerTextColor>
 
             <Footer>
