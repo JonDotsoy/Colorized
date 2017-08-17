@@ -56,7 +56,8 @@
 	    _templateObject4 = _taggedTemplateLiteral(['\n  font-family: \'Roboto\', sans-serif;\n  text-transform: uppercase;\n  font-size: 1.2em;\n  font-weight: 400;\n  margin: 0px;\n  color: ', ';\n'], ['\n  font-family: \'Roboto\', sans-serif;\n  text-transform: uppercase;\n  font-size: 1.2em;\n  font-weight: 400;\n  margin: 0px;\n  color: ', ';\n']),
 	    _templateObject5 = _taggedTemplateLiteral(['\n  font-family: \'Roboto Mono\', monospace;\n  color: ', ';\n  font-weight: 100;\n  font-size: 3em;\n  margin: 0px;\n  text-transform: uppercase;\n  text-align: center;\n  display: block;\n  align-self: center;\n'], ['\n  font-family: \'Roboto Mono\', monospace;\n  color: ', ';\n  font-weight: 100;\n  font-size: 3em;\n  margin: 0px;\n  text-transform: uppercase;\n  text-align: center;\n  display: block;\n  align-self: center;\n']),
 	    _templateObject6 = _taggedTemplateLiteral(['\n  flex: 1;\n  display: flex;\n  justify-content: center;\n'], ['\n  flex: 1;\n  display: flex;\n  justify-content: center;\n']),
-	    _templateObject7 = _taggedTemplateLiteral(['\n  display: none;\n'], ['\n  display: none;\n']);
+	    _templateObject7 = _taggedTemplateLiteral(['\n  display: none;\n'], ['\n  display: none;\n']),
+	    _templateObject8 = _taggedTemplateLiteral(['\n  text-transform: none;\n  text-decoration: none;\n  color: ', ';\n  a:visited,\n  a:link,\n  a {\n    color: ', ';\n    text-decoration: none;\n    font-weight: 300;\n  }\n  a:after {\n    content: \' \u2014 \';\n  }\n  a:last-child:after {\n    content: \'\';\n  }\n'], ['\n  text-transform: none;\n  text-decoration: none;\n  color: ', ';\n  a:visited,\n  a:link,\n  a {\n    color: ', ';\n    text-decoration: none;\n    font-weight: 300;\n  }\n  a:after {\n    content: \' \u2014 \';\n  }\n  a:last-child:after {\n    content: \'\';\n  }\n']);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -95,6 +96,8 @@
 	var ContainerTextColor = styled.div(_templateObject6);
 
 	var InputSelectColors = styled.input(_templateObject7);
+
+	var Footer = styled.div(_templateObject8, LoadColorText, LoadColorText);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -174,6 +177,20 @@
 	                TextColor,
 	                { htmlFor: 'select-color' },
 	                this.state.theme.color
+	              )
+	            ),
+	            React.createElement(
+	              Footer,
+	              null,
+	              React.createElement(
+	                'a',
+	                { href: 'https://github.com/JonDotsoy/Colorized', target: '_blank' },
+	                'Github'
+	              ),
+	              React.createElement(
+	                'a',
+	                { href: 'https://jon.soy/', target: '_blank' },
+	                'JON.SOY'
 	              )
 	            )
 	          )

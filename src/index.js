@@ -70,6 +70,25 @@ const InputSelectColors = styled.input`
   display: none;
 `
 
+const Footer = styled.div`
+  text-transform: none;
+  text-decoration: none;
+  color: ${LoadColorText};
+  a:visited,
+  a:link,
+  a {
+    color: ${LoadColorText};
+    text-decoration: none;
+    font-weight: 300;
+  }
+  a:after {
+    content: ' — ';
+  }
+  a:last-child:after {
+    content: '';
+  }
+`
+
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -124,6 +143,11 @@ class App extends React.Component {
             <ContainerTextColor>
               <TextColor htmlFor='select-color'>{this.state.theme.color}</TextColor>
             </ContainerTextColor>
+
+            <Footer>
+              <a href="https://github.com/JonDotsoy/Colorized" target="_blank">Github</a>
+              <a href="https://jon.soy/" target="_blank">JON.SOY</a>
+            </Footer>
 
           </BodyContainer>
         </ThemeProvider>
