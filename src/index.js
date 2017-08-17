@@ -51,6 +51,7 @@ const TextColor = styled.h1`
   font-weight: 100;
   font-size: 3em;
   margin: 0px;
+  text-transform: uppercase;
 `
 
 class App extends React.Component {
