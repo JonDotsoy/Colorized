@@ -1,0 +1,45 @@
+{
+  "name": "Colorized",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "gulp watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonDotsoy/Colorized.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonDotsoy/Colorized/issues"
+  },
+  "homepage": "https://github.com/JonDotsoy/Colorized#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
+    "color": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-webpack": "^1.5.0",
+    "lodash": "^4.17.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "setimmutable": "^0.1.9",
+    "styled-components": "^2.1.2"
+  },
+  "babel": {
+    "presets": [
+      "env",
+      "react",
+      "stage-0"
+    ]
+  }
+}
