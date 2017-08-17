@@ -1,5 +1,6 @@
 {
   "name": "Colorized",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/JonDotsoy/Colorized.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+  ],
+  "author": "Jonathan Delgado <hi@jon.soy> (https://jon.soy)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/JonDotsoy/Colorized/issues"
   },
