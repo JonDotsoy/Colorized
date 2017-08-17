@@ -3,6 +3,9 @@ const _ = global._ =  require('lodash')
 const Color = global.Color = require('color')
 const React = require('react')
 const ReactDOM = require('react-dom')
+const MdContentCopy = require('react-icons/lib/md/content-copy')
+const MdAutorenew = require('react-icons/lib/md/autorenew')
+const MdCreate = require('react-icons/lib/md/create')
 
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700');
@@ -66,7 +69,7 @@ const ContainerTextColor = styled.div`
   justify-content: center;
 `
 
-const InputSelectColors = styled.input`
+const InputSelectColors = styled.div`
   display: none;
 `
 
@@ -89,6 +92,17 @@ const Footer = styled.div`
   }
 `
 
+const BtnClipColor = styled.button`
+  display: inline-block;
+  border: none;
+  background: none;
+  font-size:2em;
+  margin: 0px;
+  padding: 0px;
+  color: ${LoadColorText};
+  opacity: 0.7;
+`
+
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -99,21 +113,22 @@ class App extends React.Component {
         colorTextDark: '#000'
       }
     }
+    this.inputColor = null
   }
 
   RandomColor = () => {
-
+    this.setState((state) => ({
+      theme: {
+        ...state.theme,
+        color: Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex()
+      }
+    }))
   }
 
   componentWillMount () {
     document.addEventListener('keydown', (event) => {
       if (event.keyCode === 32) {
-        this.setState((state) => ({
-          theme: {
-            ...state.theme,
-            color: Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex()
-          }
-        }))
+        this.RandomColor()
       }
     })
   }
@@ -129,6 +144,11 @@ class App extends React.Component {
     }))
   }
 
+  EditColor = () => {
+    console.log(this.refs)
+    this.refcolor.click()
+  }
+
   render () {
     return (
       <div>
@@ -137,11 +157,15 @@ class App extends React.Component {
 
             <Header>
               <Brand>Colorized</Brand>
-              <InputSelectColors id="select-color" type='color' value={this.state.theme.color} onChange={this.handleChangeColor} />
+              <InputSelectColors>
+                <input ref={r=>this.refcolor=r} id="select-color" type='color' value={this.state.theme.color} onChange={this.handleChangeColor} />
+              </InputSelectColors>
             </Header>
 
             <ContainerTextColor>
-              <TextColor htmlFor='select-color'>{this.state.theme.color}</TextColor>
+              <BtnClipColor onClick={this.RandomColor}><MdAutorenew></MdAutorenew></BtnClipColor>
+              <TextColor>{this.state.theme.color}</TextColor>
+              <BtnClipColor onClick={this.EditColor}><MdCreate></MdCreate></BtnClipColor>
             </ContainerTextColor>
 
             <Footer>
