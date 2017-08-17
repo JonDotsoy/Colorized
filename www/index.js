@@ -52,9 +52,11 @@
 
 	var _templateObject = _taggedTemplateLiteral(['\n  @import url(\'https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700\');\n  @import url(\'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700\');\n  html {\n    font-family: \'Roboto\', sans-serif;\n    font-weight: 200;\n  }\n\n  body {\n    padding: 0px;\n    margin: 0px;\n  }\n'], ['\n  @import url(\'https://fonts.googleapis.com/css?family=Roboto+Mono:100,300,400,500,700\');\n  @import url(\'https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700\');\n  html {\n    font-family: \'Roboto\', sans-serif;\n    font-weight: 200;\n  }\n\n  body {\n    padding: 0px;\n    margin: 0px;\n  }\n']),
 	    _templateObject2 = _taggedTemplateLiteral(['\n    \n'], ['\n    \n']),
-	    _templateObject3 = _taggedTemplateLiteral(['\n  background-color: ', ';\n  padding: 0px;\n  min-height: 100vh;\n  padding: 10px;\n  box-sizing: border-box;\n'], ['\n  background-color: ', ';\n  padding: 0px;\n  min-height: 100vh;\n  padding: 10px;\n  box-sizing: border-box;\n']),
+	    _templateObject3 = _taggedTemplateLiteral(['\n  background-color: ', ';\n  padding: 0px;\n  min-height: 100vh;\n  padding: 10px;\n  box-sizing: border-box;\n  display: flex;\n  width: 100%;\n  flex-direction: column;\n'], ['\n  background-color: ', ';\n  padding: 0px;\n  min-height: 100vh;\n  padding: 10px;\n  box-sizing: border-box;\n  display: flex;\n  width: 100%;\n  flex-direction: column;\n']),
 	    _templateObject4 = _taggedTemplateLiteral(['\n  font-family: \'Roboto\', sans-serif;\n  text-transform: uppercase;\n  font-size: 1.2em;\n  font-weight: 400;\n  margin: 0px;\n  color: ', ';\n'], ['\n  font-family: \'Roboto\', sans-serif;\n  text-transform: uppercase;\n  font-size: 1.2em;\n  font-weight: 400;\n  margin: 0px;\n  color: ', ';\n']),
-	    _templateObject5 = _taggedTemplateLiteral(['\n  font-family: \'Roboto Mono\', monospace;\n  color: ', ';\n  font-weight: 100;\n  font-size: 3em;\n  margin: 0px;\n'], ['\n  font-family: \'Roboto Mono\', monospace;\n  color: ', ';\n  font-weight: 100;\n  font-size: 3em;\n  margin: 0px;\n']);
+	    _templateObject5 = _taggedTemplateLiteral(['\n  font-family: \'Roboto Mono\', monospace;\n  color: ', ';\n  font-weight: 100;\n  font-size: 3em;\n  margin: 0px;\n  text-transform: uppercase;\n  text-align: center;\n  display: block;\n  align-self: center;\n'], ['\n  font-family: \'Roboto Mono\', monospace;\n  color: ', ';\n  font-weight: 100;\n  font-size: 3em;\n  margin: 0px;\n  text-transform: uppercase;\n  text-align: center;\n  display: block;\n  align-self: center;\n']),
+	    _templateObject6 = _taggedTemplateLiteral(['\n  flex: 1;\n  display: flex;\n  justify-content: center;\n'], ['\n  flex: 1;\n  display: flex;\n  justify-content: center;\n']),
+	    _templateObject7 = _taggedTemplateLiteral(['\n  display: none;\n'], ['\n  display: none;\n']);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -86,9 +88,13 @@
 	  return Color(props.theme.color).dark() ? props.theme.colorTextLight : props.theme.colorTextDark;
 	};
 
-	var Brand = styled.h1(_templateObject4, LoadColorText);
+	var Brand = styled.label(_templateObject4, LoadColorText);
 
-	var TextColor = styled.h1(_templateObject5, LoadColorText);
+	var TextColor = styled.label(_templateObject5, LoadColorText);
+
+	var ContainerTextColor = styled.div(_templateObject6);
+
+	var InputSelectColors = styled.input(_templateObject7);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -159,14 +165,14 @@
 	                null,
 	                'Colorized'
 	              ),
-	              React.createElement('input', { type: 'color', value: this.state.theme.color, onChange: this.handleChangeColor })
+	              React.createElement(InputSelectColors, { id: 'select-color', type: 'color', value: this.state.theme.color, onChange: this.handleChangeColor })
 	            ),
 	            React.createElement(
-	              'div',
+	              ContainerTextColor,
 	              null,
 	              React.createElement(
 	                TextColor,
-	                null,
+	                { htmlFor: 'select-color' },
 	                this.state.theme.color
 	              )
 	            )

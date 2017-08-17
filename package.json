@@ -6,14 +6,14 @@
   "main": "index.js",
   "scripts": {
     "watch": "gulp watch",
+    "build": "gulp build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JonDotsoy/Colorized.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Jonathan Delgado <hi@jon.soy> (https://jon.soy)",
   "license": "MIT",
   "bugs": {
@@ -23,6 +23,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.1",
+    "babel-preset-babili": "^0.1.4",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
@@ -36,12 +37,5 @@
     "react-dom": "^15.6.1",
     "setimmutable": "^0.1.9",
     "styled-components": "^2.1.2"
-  },
-  "babel": {
-    "presets": [
-      "env",
-      "react",
-      "stage-0"
-    ]
   }
 }

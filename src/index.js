@@ -28,6 +28,9 @@ const BodyContainer = styled.div`
   min-height: 100vh;
   padding: 10px;
   box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 `
 
 const LoadColorText = props => (
@@ -36,7 +39,7 @@ const LoadColorText = props => (
     : props.theme.colorTextDark
 )
 
-const Brand = styled.h1`
+const Brand = styled.label`
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
   font-size: 1.2em;
@@ -45,13 +48,26 @@ const Brand = styled.h1`
   color: ${LoadColorText};
 `
 
-const TextColor = styled.h1`
+const TextColor = styled.label`
   font-family: 'Roboto Mono', monospace;
   color: ${LoadColorText};
   font-weight: 100;
   font-size: 3em;
   margin: 0px;
   text-transform: uppercase;
+  text-align: center;
+  display: block;
+  align-self: center;
+`
+
+const ContainerTextColor = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+`
+
+const InputSelectColors = styled.input`
+  display: none;
 `
 
 class App extends React.Component {
@@ -99,14 +115,15 @@ class App extends React.Component {
       <div>
         <ThemeProvider theme={this.state.theme}>
           <BodyContainer>
+
             <Header>
               <Brand>Colorized</Brand>
-              <input type='color' value={this.state.theme.color} onChange={this.handleChangeColor} />
+              <InputSelectColors id="select-color" type='color' value={this.state.theme.color} onChange={this.handleChangeColor} />
             </Header>
 
-            <div>
-              <TextColor>{this.state.theme.color}</TextColor>
-            </div>
+            <ContainerTextColor>
+              <TextColor htmlFor='select-color'>{this.state.theme.color}</TextColor>
+            </ContainerTextColor>
 
           </BodyContainer>
         </ThemeProvider>

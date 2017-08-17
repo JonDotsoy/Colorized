@@ -1,15 +1,6 @@
 const gulp = require('gulp')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
-const browserSyncPlugin = new BrowserSyncPlugin({
-    host: 'localhost',
-    port: 3000,
-    server: {
-        baseDir: [ 'www' ]
-    }
-})
-const bs = browserSyncPlugin.browserSync
-
 gulp.task('watch-scripts', () =>
     gulp
         .src(['src/index.js'])
@@ -32,11 +23,59 @@ gulp.task('watch-scripts', () =>
                     ]
                 },
                 plugins: [
-                    browserSyncPlugin
+                    new BrowserSyncPlugin({
+                        host: 'localhost',
+                        port: 3000,
+                        server: {
+                            baseDir: [ 'www' ]
+                        }
+                    })
                 ]
             })
         )
         .pipe(gulp.dest('www'))
 )
 
+gulp.task('build-script', () => (
+    gulp
+        .src(['src/index.js'])
+        .pipe(
+            require('gulp-webpack')({
+                output: {
+                    filename: "index.js"
+                },
+                module: {
+                    loaders: [
+                        {
+                            test: /\.js$/,
+                            loader: 'babel-loader',
+                            options: {
+                                minimize: true,
+                            },
+                            query: {
+                                minified: true,
+                                presets: [
+                                    'env',
+                                    'react',
+                                    'stage-0',
+                                    'babili'
+                                ]
+                            }
+                        }
+                    ]
+                },
+                plugins: [
+                ]
+            })
+        )
+        .pipe(gulp.dest('docs'))
+))
+
+gulp.task('copy-to-docs', () => 
+    gulp
+        .src(['www/index.html'])
+        .pipe(gulp.dest('docs'))
+)
+
+gulp.task('build', ['build-script', 'copy-to-docs'])
 gulp.task('watch', ['watch-scripts'])
