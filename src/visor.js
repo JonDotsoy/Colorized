@@ -159,7 +159,7 @@ const DatePickerContainer = styled.div`
   position: absolute;
   width: 200px;
   border: solid 1px ${LoadColorText};
-  left: 0px;
+  right: 10px;
   top: 40px;
   background-color: ${props=>props.color};
   z-index: 1;
