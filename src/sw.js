@@ -7,9 +7,9 @@ const handleInstallCacheFiles = (event) => async function () {
 
   try {
     await cache.addAll([
-      './index.html',
-      './offline.html',
-      './index.js'
+      '/Colorized/index.html',
+      '/Colorized/offline.html',
+      '/Colorized/index.js'
     ])
   } catch (ex) {}
 
@@ -29,12 +29,13 @@ self.addEventListener('fetch', function (event) {
   console.log(urlRequest)
 
   switch (urlRequest.pathname) {
-    case '/': {
-      return event.respondWith(caches.match('./index.html'))
+    case '/Colorized/':
+    case '/Colorized/index.html': {
+      return event.respondWith(caches.match('/Colorized/index.html'))
       break
     }
-    case '/index.js': {
-      return event.respondWith(caches.match('./index.js'))
+    case '/Colorized/index.js': {
+      return event.respondWith(caches.match('/Colorized/index.js'))
       break
     }
   }
