@@ -3,30 +3,30 @@ const Color = global.Color = require('color')
 const React = require('react')
 const ReactDOM = require('react-dom')
 const {Render} = require('./visor')
+const debounce = require('lodash/debounce')
 
-function updateHASHLink (txt) {
-  // document?.location?.hash = txt
-  try {
-    if (document.location.hash !== txt) {
-      document.location.hash = txt
-    }
-  } catch (ex) {}
+const updateHASHLink = debounce(function updateHASHLink (txt) {
+  var _document, _document$location;
 
-  return txt
-}
+  (_document = document) == null ? void 0 : (_document$location = _document.location) == null ? void 0 : _document$location.hash = txt;
+}, 200)
 
 class App extends React.Component {
   constructor (props) {
     super(props)
+
+    const color = document.location.hash === '' ? Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex() : Color(document.location.hash).hex()
+
+    updateHASHLink(color)
+
     this.state = {
       theme: {
-        color: updateHASHLink(document.location.hash === '' ? Color.rgb(_.random(0, 255), _.random(0, 255), _.random(0, 255)).hex() : Color(document.location.hash).hex()),
+        color,
         colorTextLight: '#FFF',
         colorTextDark: '#000'
       },
       paletteView: false,
       colorPickerVisible: false,
-      colors: [],
     }
 
     this.inputColor = null
@@ -42,13 +42,6 @@ class App extends React.Component {
         this.randomColor()
       }
     })
-  }
-
-  getColors = () => {
-    return [
-      ...this.state.colors,
-      this.state.theme.color
-    ]
   }
 
   handleAddColor = () => {
@@ -106,7 +99,6 @@ class App extends React.Component {
       <Render
         paletteView={this.state.paletteView}
         theme={this.state.theme}
-        colors={this.getColors()}
         randomColor={this.randomColor}
         updateColor={this.updateColor}
         handleAddColor={this.handleAddColor}
