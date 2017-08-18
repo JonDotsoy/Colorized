@@ -26,7 +26,7 @@ class App extends React.Component {
         colorTextDark: '#000'
       },
       paletteView: false,
-      colorPickerVisible: false,
+      colorPickerVisible: !false,
     }
 
     this.inputColor = null

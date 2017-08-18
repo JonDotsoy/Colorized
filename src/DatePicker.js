@@ -1,6 +1,6 @@
 const {default: styled, css} = require('styled-components')
 const React = require('react')
-
+const InputRange = require('react-input-range')
 
 const LoadColorText = props => (
   Color(props.theme.color).dark()
@@ -22,8 +22,12 @@ const DatePickerContainer = styled.div`
   background-color: ${props=>props.color};
   z-index: 1;
   padding: 10px;
-  @media (max-width: 400px) {
-    width: 100%;
+  @media (max-width: 500px) {
+    display: block;
+    position: relative;
+    width: auto;
+    right: auto;
+    top: auto;
   }
 `
 
@@ -31,9 +35,17 @@ const DatePickerLabel = styled.label`
   ${TextColorStyle};
   display: block;
   width: 100%;
-  font-weight: 400;
+  font-weight: 300;
   padding: 0px;
   margin: 0px;
+`
+
+const DatePickerTitle = styled.h3`
+  font-size: 1.4em;
+  margin: 0px;
+  padding:0px;
+  font-weight: 100;
+  text-align: center;
 `
 
 const DatePickerRange = styled.input`
@@ -41,11 +53,12 @@ const DatePickerRange = styled.input`
 
   &::-webkit-slider-thumb {
     margin-top: -10px;
+    width: 40px;
   }
 
   &::-webkit-slider-runnable-track {
     width: 100%;
-    height: 1px;
+    height: 5px;
     cursor: pointer;
     background: ${LoadColorText};
     border-radius: 1.3px;
@@ -122,6 +135,7 @@ class DatePicker extends React.Component {
   render () {
       return (
         <DatePickerContainer>
+          <DatePickerTitle>RGB</DatePickerTitle>
           <DatePickerLabel>RED</DatePickerLabel>
           <DatePickerRange ref={e=>this.iptr=e} type="range" onChange={this.handleChangeR} min={0} max={255} value={this.state.color[0]}/>
           <DatePickerLabel>GREEN</DatePickerLabel>

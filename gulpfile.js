@@ -18,8 +18,13 @@ gulp.task('watch-scripts', () =>
                     loader: 'babel-loader',
                     exclude: /node_modules/,
                     options: {
-                      presets: ['env', 'react', 'stage-0'],
-                      plugins: ['transform-optional-chaining']
+                      presets: [
+                        'env',
+                        'react',
+                        'stage-0'
+                      ],
+                      plugins: [
+                      ]
                     }
                   }
                 ]
@@ -45,34 +50,40 @@ gulp.task('build-script', () => (
         .src(['src/index.js'])
         .pipe(
             require('webpack-stream')(
-            {
-              output: {
-                filename: 'index.js'
-              },
-              module: {
-                loaders: [
-                  {
-                    test: /\.js$/,
-                    loader: 'babel-loader',
-                    exclude: /node_modules/,
-                    options: {
-                      presets: ['env', 'react', 'stage-0'],
-                      plugins: ['transform-optional-chaining'],
-                      comments: false
+              {
+                output: {
+                  filename: 'index.js'
+                },
+                module: {
+                  loaders: [
+                    {
+                      test: /\.js$/,
+                      loader: 'babel-loader',
+                      exclude: /node_modules/,
+                      options: {
+                         presets: [
+                          'env',
+                          'react',
+                          'stage-0'
+                        ],
+                        plugins: [
+                        ],
+                        // comments: false
+                      }
                     }
-                  }
+                  ]
+                },
+                plugins: [
+                  new webpack.DefinePlugin({
+                    'process.env.NODE_ENV': JSON.stringify('production')
+                  })
                 ]
-              },
-              plugins: [
-                new webpack.DefinePlugin({
-                  'process.env.NODE_ENV': JSON.stringify('production')
-                })
-              ]
-            },
-            require('webpack')
+              }
           )
         )
-        .pipe(require('babel-minify')({}, {}))
+        .pipe(require('gulp-babel-minify')({}, {
+          comments: false
+        }))
         .pipe(gulp.dest('docs'))
 ))
 
