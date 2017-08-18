@@ -1,5 +1,6 @@
 ### Custom
 www/index.js
+www/sw.js
 
 # Created by https://www.gitignore.io/api/node,windows,linux,macos
 

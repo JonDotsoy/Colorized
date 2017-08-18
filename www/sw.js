@@ -122,6 +122,8 @@ self.addEventListener('activate', function (event) {});
 self.addEventListener('fetch', function (event) {
   var urlRequest = url.parse(event.request.url);
 
+  console.log(urlRequest);
+
   switch (urlRequest.pathname) {
     case '/':
       {

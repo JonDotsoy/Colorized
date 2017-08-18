@@ -26,6 +26,8 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   const urlRequest = url.parse(event.request.url)
 
+  console.log(urlRequest)
+
   switch (urlRequest.pathname) {
     case '/': {
       return event.respondWith(caches.match('./index.html'))
