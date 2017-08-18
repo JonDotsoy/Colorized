@@ -154,6 +154,78 @@ const BtnAction = styled.button`
   padding: 0px;
 `
 
+const DatePickerContainer = styled.div`
+  ${TextColorStyle};
+  position: absolute;
+  width: 200px;
+  border: solid 1px ${LoadColorText};
+  left: 0px;
+  top: 40px;
+  background-color: ${props=>props.color};
+  z-index: 1;
+  padding: 10px;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+`
+
+const DatePickerLabel = styled.label`
+  ${TextColorStyle};
+  display: block;
+  width: 100%;
+  font-weight: 400;
+  padding: 0px;
+  margin: 0px;
+`
+
+const DatePickerRange = styled.input`
+  width: 100%;
+
+  &::-webkit-slider-thumb {
+    margin-top: -10px;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 1px;
+    cursor: pointer;
+    background: ${LoadColorText};
+    border-radius: 1.3px;
+    border: none;
+  }
+`
+
+const DatePicker = function DatePicker (props) {
+  const refs = {}
+  const color = Color(props.value).color
+
+  const handleChangeR = (event) => {
+    color[0] = Number(event.target.value)
+    props.onChange && props.onChange(Color.rgb(color).hex())
+  }
+
+  const handleChangeG = (event) => {
+    color[1] = Number(event.target.value)
+    props.onChange && props.onChange(Color.rgb(color).hex())
+  }
+
+  const handleChangeB = (event) => {
+    color[2] = Number(event.target.value)
+    props.onChange && props.onChange(Color.rgb(color).hex())
+  }
+
+  return (
+    <DatePickerContainer>
+      <DatePickerLabel>RED</DatePickerLabel>
+      <DatePickerRange ref={e=>refs.iptr=e} type="range" onChange={handleChangeR} min={0} max={255} defaultValue={color[0]}/>
+      <DatePickerLabel>GREEN</DatePickerLabel>
+      <DatePickerRange ref={e=>refs.iptg=e} type="range" onChange={handleChangeG} min={0} max={255} defaultValue={color[1]}/>
+      <DatePickerLabel>BLUE</DatePickerLabel>
+      <DatePickerRange ref={e=>refs.iptb=e} type="range" onChange={handleChangeB} min={0} max={255} defaultValue={color[2]}/>
+    </DatePickerContainer>
+  )
+}
+
 const Render = (props) => (
   <ThemeProvider theme={props.theme}>
     <BodyContainer style={{
@@ -163,8 +235,14 @@ const Render = (props) => (
       <Header>
         <Brand>Colorized</Brand>
         <LeftActionsHeader>
+          <BtnAction onClick={props.handleToggleColorPicker}>Picker</BtnAction>
           <BtnAction onClick={props.randomColor}>random</BtnAction>
         </LeftActionsHeader>
+
+        {props.colorPickerVisible &&
+          <DatePicker onChange={props.updateColor} value={props.theme.color}></DatePicker>
+        }
+
       </Header>
 
       {(props.paletteView) === false &&

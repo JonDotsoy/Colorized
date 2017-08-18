@@ -25,6 +25,7 @@ class App extends React.Component {
         colorTextDark: '#000'
       },
       paletteView: false,
+      colorPickerVisible: false,
       colors: [],
     }
 
@@ -96,6 +97,10 @@ class App extends React.Component {
     }))
   }
 
+  handleToggleColorPicker = () => {
+    this.setState(({colorPickerVisible}) => ({colorPickerVisible: !colorPickerVisible}))
+  }
+
   render () {
     return (
       <Render
@@ -103,7 +108,10 @@ class App extends React.Component {
         theme={this.state.theme}
         colors={this.getColors()}
         randomColor={this.randomColor}
+        updateColor={this.updateColor}
         handleAddColor={this.handleAddColor}
+        colorPickerVisible={this.state.colorPickerVisible}
+        handleToggleColorPicker={this.handleToggleColorPicker}
         handleToggleViewPalette={this.handleToggleViewPalette}
       />
     )

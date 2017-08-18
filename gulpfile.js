@@ -24,6 +24,8 @@ gulp.task('watch-scripts', () =>
                 },
                 plugins: [
                     new BrowserSyncPlugin({
+                        logFileChanges: false,
+                        logConnections: false,
                         host: 'localhost',
                         port: 3000,
                         server: {
