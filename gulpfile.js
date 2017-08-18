@@ -8,37 +8,85 @@ gulp.task('watch-scripts', () =>
         .pipe(
             require('webpack-stream')({
               watch: true,
-              output: {
-                filename: 'index.js'
-              },
-              module: {
-                loaders: [
-                  {
-                    test: /\.js$/,
-                    loader: 'babel-loader',
-                    exclude: /node_modules/,
-                    options: {
-                      presets: [
-                        'env',
-                        'react',
-                        'stage-0'
-                      ],
-                      plugins: [
-                      ]
-                    }
-                  }
-                ]
-              },
-              plugins: [
-                new BrowserSyncPlugin({
-                  logFileChanges: false,
-                  logConnections: false,
-                  host: 'localhost',
-                  port: 3000,
-                  server: {
-                    baseDir: [ 'www' ]
-                  }
-                })
+              config: [
+
+                {
+                  entry: {
+                    filename: './src/index.js'
+                  },
+                  output: {
+                    filename: 'index.js'
+                  },
+                  module: {
+                    loaders: [
+                      {
+                        test: /\.js$/,
+                        loader: 'babel-loader',
+                        exclude: /node_modules/,
+                        options: {
+                          presets: [
+                            'env',
+                            'react',
+                            'stage-0'
+                          ],
+                          plugins: [
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  plugins: [
+                    new BrowserSyncPlugin({
+                      logFileChanges: false,
+                      logConnections: false,
+                      host: 'localhost',
+                      port: 3000,
+                      server: {
+                        baseDir: [ 'www' ]
+                      }
+                    })
+                  ]
+                },
+
+                {
+                  watch: true,
+                  entry: {
+                    filename: './src/sw.js'
+                  },
+                  output: {
+                    filename: 'sw.js'
+                  },
+                  module: {
+                    loaders: [
+                      {
+                        test: /\.js$/,
+                        loader: 'babel-loader',
+                        exclude: /node_modules/,
+                        options: {
+                          presets: [
+                            'env',
+                            'react',
+                            'stage-0'
+                          ],
+                          plugins: [
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  plugins: [
+                    new BrowserSyncPlugin({
+                      logFileChanges: false,
+                      logConnections: false,
+                      host: 'localhost',
+                      port: 3000,
+                      server: {
+                        baseDir: [ 'www' ]
+                      }
+                    })
+                  ]
+                }
+
               ]
             })
         )
@@ -50,35 +98,78 @@ gulp.task('build-script', () => (
         .src(['src/index.js'])
         .pipe(
             require('webpack-stream')(
+
               {
-                output: {
-                  filename: 'index.js'
-                },
-                module: {
-                  loaders: [
-                    {
-                      test: /\.js$/,
-                      loader: 'babel-loader',
-                      exclude: /node_modules/,
-                      options: {
-                         presets: [
-                          'env',
-                          'react',
-                          'stage-0'
-                        ],
-                        plugins: [
-                        ],
-                        // comments: false
+              config: [
+
+                {
+                  entry: {
+                    filename: './src/index.js'
+                  },
+                  output: {
+                    filename: 'index.js'
+                  },
+                  module: {
+                    loaders: [
+                      {
+                        test: /\.js$/,
+                        loader: 'babel-loader',
+                        exclude: /node_modules/,
+                        options: {
+                          presets: [
+                            'env',
+                            'react',
+                            'stage-0'
+                          ],
+                          plugins: [
+                          ]
+                        }
                       }
-                    }
+                    ]
+                  },
+                  plugins: [
+                    new webpack.DefinePlugin({
+                      'process.env.NODE_ENV': JSON.stringify('production')
+                    })
                   ]
                 },
-                plugins: [
-                  new webpack.DefinePlugin({
-                    'process.env.NODE_ENV': JSON.stringify('production')
-                  })
-                ]
-              }
+
+                {
+                  watch: true,
+                  entry: {
+                    filename: './src/sw.js'
+                  },
+                  output: {
+                    filename: 'sw.js'
+                  },
+                  module: {
+                    loaders: [
+                      {
+                        test: /\.js$/,
+                        loader: 'babel-loader',
+                        exclude: /node_modules/,
+                        options: {
+                          presets: [
+                            'env',
+                            'react',
+                            'stage-0'
+                          ],
+                          plugins: [
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  plugins: [
+                    new webpack.DefinePlugin({
+                      'process.env.NODE_ENV': JSON.stringify('production')
+                    })
+                  ]
+                }
+
+              ]
+            }
+
           )
         )
         .pipe(require('gulp-babel-minify')({}, {
@@ -88,9 +179,9 @@ gulp.task('build-script', () => (
 ))
 
 gulp.task('copy-to-docs', () =>
-    gulp
-        .src(['www/index.html'])
-        .pipe(gulp.dest('docs'))
+  gulp
+    .src(['www/index.html'])
+    .pipe(gulp.dest('docs'))
 )
 
 gulp.task('build', ['build-script', 'copy-to-docs'])

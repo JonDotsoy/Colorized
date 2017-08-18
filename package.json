@@ -1,7 +1,7 @@
 {
   "name": "Colorized",
   "private": true,
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,10 +30,12 @@
     "browser-sync-webpack-plugin": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-babel-minify": "^0.2.0",
+    "gulp-pug": "^3.3.0",
     "webpack": "^3.5.5",
     "webpack-stream": "^4.0.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "color": "^2.0.0",
     "lodash": "^4.17.4",
     "react": "^15.6.1",

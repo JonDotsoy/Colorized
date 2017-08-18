@@ -149,8 +149,8 @@ const BtnAction = styled.button`
   font-weight: 500;
   text-transform: uppercase;
   font-size: 0.8em;
-  margin: 5px 10px;
-  padding: 0px;
+  margin: 0px 0px;
+  padding: 5px 15px;
 `
 
 const {DatePicker} = require('./DatePicker')
