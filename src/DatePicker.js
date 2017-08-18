@@ -14,6 +14,7 @@ const TextColorStyle = css`
 
 const DatePickerContainer = styled.div`
   ${TextColorStyle};
+  background-color: ${props=>props.theme.color};
   position: absolute;
   width: 200px;
   border: solid 1px ${LoadColorText};
