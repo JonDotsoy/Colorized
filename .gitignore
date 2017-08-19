@@ -1,6 +1,8 @@
 ### Custom
 www/index.js
 www/sw.js
+www/Colorized/index.js
+www/Colorized/sw.js
 
 # Created by https://www.gitignore.io/api/node,windows,linux,macos
 
