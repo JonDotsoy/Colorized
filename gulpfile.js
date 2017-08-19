@@ -37,6 +37,7 @@ gulp.task('watch-scripts', () =>
                   },
                   plugins: [
                     new BrowserSyncPlugin({
+                      startPath: '/Colorized',
                       logFileChanges: false,
                       logConnections: false,
                       host: 'localhost',
@@ -73,24 +74,13 @@ gulp.task('watch-scripts', () =>
                         }
                       }
                     ]
-                  },
-                  plugins: [
-                    new BrowserSyncPlugin({
-                      logFileChanges: false,
-                      logConnections: false,
-                      host: 'localhost',
-                      port: 3000,
-                      server: {
-                        baseDir: [ 'www' ]
-                      }
-                    })
-                  ]
+                  }
                 }
 
               ]
             })
         )
-        .pipe(gulp.dest('www'))
+        .pipe(gulp.dest('www/Colorized'))
 )
 
 gulp.task('build-script', () => (
@@ -180,7 +170,7 @@ gulp.task('build-script', () => (
 
 gulp.task('copy-to-docs', () =>
   gulp
-    .src(['www/index.html'])
+    .src(['www/Colorized/index.html'])
     .pipe(gulp.dest('docs'))
 )
 
