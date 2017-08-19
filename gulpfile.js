@@ -168,7 +168,13 @@ gulp.task('build-script', () => (
         .pipe(gulp.dest('docs'))
 ))
 
-gulp.task('copy-to-docs', () =>
+gulp.task('copy-icon', () =>
+  gulp
+    .src(['www/Colorized/icons/**'])
+    .pipe(gulp.dest('docs/icons'))
+)
+
+gulp.task('copy-to-docs', ['copy-icon'], () =>
   gulp
     .src(['www/Colorized/index.html'])
     .pipe(gulp.dest('docs'))
