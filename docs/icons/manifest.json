@@ -1,5 +1,6 @@
 {
     "name": "Colorized",
+    "short_name": "Colorized",
     "icons": [
         {
             "src": "/Colorized/icons/android-chrome-192x192.png",

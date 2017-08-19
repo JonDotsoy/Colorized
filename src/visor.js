@@ -169,7 +169,7 @@ const Render = (props) => (
         </LeftActionsHeader>
 
         {props.colorPickerVisible &&
-          <DatePicker onChange={props.updateColor} value={props.theme.color}></DatePicker>
+          <DatePicker onChange={props.updateColor} value={props.theme.color} />
         }
 
       </Header>
@@ -183,8 +183,8 @@ const Render = (props) => (
       }
 
       <Footer>
-        <a href='https://github.com/JonDotsoy/Colorized' target='_blank'>Github</a>
-        <a href='https://jon.soy/' target='_blank'>JON.SOY</a>
+        <a href='https://github.com/JonDotsoy/Colorized' target='_blank' rel='noopener'>Github</a>
+        <a href='https://jon.soy/' target='_blank' rel='noopener'>JON.SOY</a>
       </Footer>
 
     </BodyContainer>
