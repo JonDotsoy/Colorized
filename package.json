@@ -28,9 +28,11 @@
     "babel-preset-stage-0": "^6.24.1",
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
+    "debug": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-babel-minify": "^0.2.0",
     "gulp-pug": "^3.3.0",
+    "inline-environment-variables-webpack-plugin": "^1.2.1",
     "webpack": "^3.5.5",
     "webpack-stream": "^4.0.0"
   },

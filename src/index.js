@@ -7,7 +7,6 @@ const debounce = require('lodash/debounce')
 
 const updateHASHLink = debounce(function updateHASHLink (txt) {
   var _document, _document$location;
-
   (_document = document) == null ? void 0 : (_document$location = _document.location) == null ? void 0 : _document$location.hash = txt;
 }, 200)
 
