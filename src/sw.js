@@ -2,6 +2,8 @@ require('babel-polyfill')
 
 const debug = require('debug')
 
+
+// :|
 if (process.env.NODE_ENV !== 'production') {
   debug.enable('*')
   self.skipWaiting()

@@ -1,12 +1,13 @@
 {
   "name": "Colorized",
   "private": true,
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
     "watch": "gulp watch",
-    "build": "gulp build",
+    "buildWithGulp": "gulp build",
+    "build": "npm run --production buildWithGulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
