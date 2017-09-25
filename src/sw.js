@@ -11,7 +11,7 @@ const log = debug('sw')
 
 // const url = require('url')
 
-const currentCacheVersion = `${process.env.npm_package_name}-${process.env.npm_package_version}-2`
+const currentCacheVersion = `${process.env.npm_package_name}-${process.env.npm_package_version}-3`
 const filesOnCache = [
   '/Colorized/',
   '/Colorized/index.js'
@@ -29,7 +29,7 @@ self.addEventListener('install', function (event) {
 
     await cache.addAll(filesOnCache)
 
-    log(await cache.keys())
+    log('Files cached %o', await cache.keys())
   }))
 })
 
@@ -45,11 +45,20 @@ self.addEventListener('activate', function (event) {
         cacheName !== currentCacheVersion
       )
 
-    for (const cacheName of cachesNames) {
-      log(`delete ${cacheName} cache`)
-
-      await caches.delete(cacheName)
+    const removeCacheFile = async cacheName => {
+      if (await caches.has(cacheName)) {
+        log(`delete ${cacheName} cache`)
+        return await caches.delete(cacheName)
+      }
     }
+
+    for (const cacheName of cachesNames) {
+      await removeCacheFile(cacheName)
+    }
+
+    // Other caches
+    await removeCacheFile('static-files-v2')
+    await removeCacheFile('static-v1')
   }))
 })
 
